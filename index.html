@@ -32,7 +32,12 @@
                     </div>
 
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item" v-for="(task,i) in tasks">{{task.text}} <i class="fa-solid fa-xmark" @click="removeTask(i)"></i></li>
+                      <li class="list-group-item" v-for="(task,i) in tasks">
+                        <span :class=" { 'text-decoration-line-through': task.done }" @click="task.done=!task.done">
+                            {{task.text}}
+                        </span>
+                        <i class="fa-solid fa-xmark" @click="removeTask(i)"></i>
+                    </li>
                     </ul>
 
                 </div>
