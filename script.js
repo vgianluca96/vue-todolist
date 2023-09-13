@@ -5,7 +5,6 @@ const {createApp} = Vue
 createApp({
     data() {
         return {
-            condition: true,
             tasks: [
                 {
                     text: 'Fare spesa',
@@ -17,20 +16,28 @@ createApp({
                 },
                 {
                     text: 'Pagare bollette',
-                    done: false
+                    done: true
                 },
                 {
                     text: 'Lavare macchina',
-                    done: true
+                    done: false
                 }
-            ]
+            ],
+            newTaskText: ''
         }
     },
     methods: {
         removeTask(index) {
             this.tasks.splice(index,1);
-            console.log(index)
-            console.log(this.tasks)
+            console.log(this.tasks);
+        },
+        addTask() {
+            this.tasks.push({
+                text: this.newTaskText,
+                done: false
+            });
+            this.newTaskText = '';
+            console.log(this.tasks);
         }
     }
 }).mount('#app');
