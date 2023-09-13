@@ -23,7 +23,8 @@ createApp({
                     done: false
                 }
             ],
-            newTaskText: ''
+            newTaskText: '',
+            emptyTaskMessage: ''
         }
     },
     methods: {
@@ -32,12 +33,17 @@ createApp({
             console.log(this.tasks);
         },
         addTask() {
-            this.tasks.push({
-                text: this.newTaskText,
-                done: false
-            });
-            this.newTaskText = '';
-            console.log(this.tasks);
+            if (this.newTaskText == '') {
+                this.emptyTaskMessage = 'Il campo nuovo task è vuoto';
+            } else {
+                this.emptyTaskMessage = '';
+                this.tasks.push({
+                    text: this.newTaskText,
+                    done: false
+                });
+                this.newTaskText = '';
+                console.log(this.tasks);
+            }
         }
     }
 }).mount('#app');
